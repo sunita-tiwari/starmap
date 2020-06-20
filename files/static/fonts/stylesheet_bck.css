@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Bold.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Light.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Medium.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Book';
+    src: url('/static/fonts/FuturaPT-Book.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Demi';
+    src: url('/static/fonts/FuturaPT-Demi.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Demi.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura Hv BT';
+    src: url('/static/fonts/FuturaBT-Heavy.woff2') format('woff2'),
+    url('/static/fonts/FuturaBT-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia.woff2') format('woff2'),
+        url('/static/fonts/Georgia.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('/static/fonts/Helvetica.woff2') format('woff2'),
+        url('/static/fonts/Helvetica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia.eot');
+    src: url('/static/fonts/Georgia.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia.woff2') format('woff2'),
+        url('/static/fonts/Georgia.woff') format('woff'),
+        url('/static/fonts/Georgia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('/static/fonts/HelveticaNeueThin.eot');
+    src: url('/static/fonts/HelveticaNeueThin.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/HelveticaNeueThin.woff2') format('woff2'),
+        url('/static/fonts/HelveticaNeueThin.woff') format('woff'),
+        url('/static/fonts/HelveticaNeueThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-Italic.eot');
+    src: url('/static/fonts/Georgia-Italic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-Italic.woff2') format('woff2'),
+        url('/static/fonts/Georgia-Italic.woff') format('woff'),
+        url('/static/fonts/Georgia-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-BoldItalic.eot');
+    src: url('/static/fonts/Georgia-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-BoldItalic.woff2') format('woff2'),
+        url('/static/fonts/Georgia-BoldItalic.woff') format('woff'),
+        url('/static/fonts/Georgia-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-Bold.eot');
+    src: url('/static/fonts/Georgia-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-Bold.woff2') format('woff2'),
+        url('/static/fonts/Georgia-Bold.woff') format('woff'),
+        url('/static/fonts/Georgia-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('/static/fonts/HelveticaNeueItalic.eot');
+    src: url('/static/fonts/HelveticaNeueItalic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/HelveticaNeueItalic.woff2') format('woff2'),
+        url('/static/fonts/HelveticaNeueItalic.woff') format('woff'),
+        url('/static/fonts/HelveticaNeueItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+
+
+

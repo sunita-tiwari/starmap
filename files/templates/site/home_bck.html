@@ -1,0 +1,1062 @@
+{% extends 'base/skeleton.html' %}
+{% load static %}
+{% block page-css %}
+<link rel="stylesheet" type="text/css" href="{% static 'fonts/stylesheet.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}">
+{% endblock page-css %}
+{% block page-body %}
+<!--    <h3 class="text-center"><a href="{% url 'site:create-star' %}">Create Star Map</a></h3>-->
+     <header class="main_header">
+
+      <div class="header_top_bar">
+        <div class="container head-top">
+          <p>Free Shipping on all us orders</p>
+        </div>
+      </div>
+
+      <div class="header_middle_logo">
+        <div class="container logo-section">
+          <a href="javascript:void(0);" class="middle_logo"> <img src="{%static 'images/logo.png' %}" alt="logo"> </a>
+        </div>
+      </div>
+
+    </header>
+
+    <section class="map_defining_sec">
+      <div class="container">
+        <div class="row product-area">
+          <div class="col-md-6 product-image">
+            <div class="pro_img" id="pro_img">
+                <input type="hidden" id="frame-color">
+                <div style="overflow:hidden;">
+                 <div id="map">
+                     <img src="{% static 'images/spinner.svg' %}">
+                 </div>
+                </div>
+<!--                <img src="{%static 'images/map-night.png' %}" alt="product">-->
+                <input type="hidden" id="text-color">
+                <div class="product-des" id="product-header">MAP YOUR NIGHT
+                </div>
+                <div class="product-des mt-5" id="product-des">
+                  April 1, 2020 <br> Los Angeles, CA<br> 32.716˚ N 122.614˚ W
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 product-detail">
+    <div id="error"></div>
+    <form id="params" name="params" method="post" action="#">
+        {% csrf_token %}
+        <div class="col d-none">
+            <!-- projection, transform, size, location?-->
+            <input type="hidden" maxlength="4" name="width" value=""/>
+            <select name="projection" id="projection" class="d-none"></select>
+            <select name="transform" id="transform" class="d-none"></select>
+            <input type="hidden" name="address-value" id="address-value" value="">
+            <input type="hidden" name="address-name" id="address-name" value="">
+            <input type="hidden" name="address-administration" id="address-administration" value="">
+            <input type="hidden" name="address-country" id="address-country" value="">
+            <input type="hidden" name="set-day" id="set-day" value="">
+            <input type="hidden" name="set-month" id="set-month" value="">
+            <input type="hidden" name="set-year" id="set-year" value="">
+            <input type="hidden" name="locx" id="locx" value="" max="90" min="-90" step="0.1">
+            <span id="lxunit" class="d-none">h</span>
+            <input type="hidden" name="locy" id="locy" value="" max="180" min="-180"
+                                               step="0.1">
+
+             <label title="Date coordinates in selected coordinate space">Date
+             <input type="hidden" name="date" id="date" value="{{current_date}}"></label>
+        </div>
+        <div class="col d-none">
+            <!-- stars -->
+            <label><strong>Stars</strong> <input type="checkbox" name="stars-show" value="true"/></label>
+            <label>down to magnitude<input type="number" name="stars-limit" value="" max="6" min="-1"
+                                           step="0.1"></label>
+            <label>with spectral colors<input type="checkbox" name="stars-colors" value="true"> </label>
+            <label>or default color <input type="color" name="stars-color" id="star_color" value=""> </label><br>
+            <label>Show names<input type="checkbox" name="stars-names" value="true"> </label>
+            <label>proper names (if any)<input type="checkbox" name="stars-proper" value="true"> </label>
+            <label>or designations<input type="checkbox" name="stars-desig" value="true"> </label>
+            <label>down to mag<input type="number" name="stars-namelimit" value="" max="6" min="-1" step="0.1"></label>
+        </div>
+
+        <div class="col d-none">
+            <!-- dsos -->
+            <label title="Deep Space Objects"><strong>DSOs</strong> <input type="checkbox" name="dsos-show"
+                                                                           value="true"> </label>
+            <label>down to mag<input type="number" name="dsos-limit" value="" max="6" min="0" step="0.1"></label>
+            <label>with names<input type="checkbox" name="dsos-names" value="true"> </label>
+            <label>or designations<input type="checkbox" name="dsos-desig" value="true"> </label>
+            <label>down to mag<input type="number" name="dsos-namelimit" value="" max="6" min="0" step="0.1"> </label>
+        </div>
+        <div class="col d-none">
+            <!-- constellations -->
+            <label><strong>Constellations</strong> <input type="checkbox" name="constellations-show" id="constellations-show"> </label>
+            <label>with names<input type="checkbox" name="constellations-names" value="true"> </label>
+            <label>abbreviated<input type="checkbox" name="constellations-desig" value="true"> </label>
+            <label>with lines<input type="checkbox" name="constellations-lines" value="true" id="constellations-lines"> </label>
+            <label>with boundaries<input type="checkbox" name="constellations-bounds" value="true"> </label>
+        </div>
+        <div class="col d-none">
+            <!-- graticules & planes -->
+            <strong>Lines</strong>
+            <label title="X/Y grid lines">Graticule<input type="checkbox" name="lines-graticule" value="true" id="lines-graticule"> </label>&nbsp;&nbsp;
+            <label>Equator<input type="checkbox" name="lines-equatorial" value="true"> </label>
+            <label>Ecliptic<input type="checkbox" name="lines-ecliptic" value="true"> </label>
+            <label>Galactic plane<input type="checkbox" name="lines-galactic" value="true"> </label>
+            <label>Supergalactic plane<input type="checkbox" name="lines-supergalactic" value="true"> </label>
+        </div>
+        <div class="col d-none">
+            <strong>Other</strong>&nbsp;&nbsp;
+            <label>Milky Way<input type="checkbox" name="mw-show" value="true"> </label>&nbsp;&nbsp;
+            <label> Background color <input type="color" name="background" id="bg_color" value=""> </label>&nbsp;&nbsp;
+            <label title="Sizes are increased with higher zoom-levels"> Adaptable sizes <input type="checkbox"
+                                                                                               name="adaptable"
+                                                                                               value="true"> </label>
+        </div>
+        <input type="hidden" id="json_data" value="" name="json_data">
+        <input type="button" id="show" value="Show" class="d-none">&nbsp;&nbsp;
+        <input type="button" id="defaults" value="Defaults" class="d-none">
+    </form>
+
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <div class="location">
+              <input type="text" class="form-control" placeholder="Start typing your location" id="address">
+                  <div class="icon" id><img src="{%static 'images/location.png' %}" id="locate-me"></div>
+              </div>
+            </div>
+
+<!--            <div class="form-row date_labels">-->
+<!--              <div class="col-md-4 month_label">Month</div>-->
+<!--              <div class="col-md-4 day_label">Day</div>-->
+<!--              <div class="col-md-4 year_label">Year</div>-->
+<!--            </div>-->
+
+            <div class="form-row">
+              <div class="form-group col-md-5">
+                <label for="inputmonth">Month</label>
+                <select id="inputmonth" class="form-control">
+                  <option selected>September</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputday">Day</label>
+                <select id="inputday" class="form-control">
+                  <option selected>21</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputyear">Year</label>
+                <select id="inputyear" class="form-control">
+                  <option selected>2020</option>
+                  <option>...</option>
+                </select>
+              </div>
+            </div>
+
+<!--            <div class="form-row">-->
+<!--              <div class="form-group col-md-12">-->
+<!--                  <input type="hidden" id="datee" readonly='readonly'>-->
+
+<!--              </div>-->
+<!--            </div>-->
+
+           <div class="form-group">
+             <ul class="product_ulimg">
+               <li><input type="radio" checked class="color_box d-none" name="color_box" onchange="change_background('#0B1A26','#ffffff','#000')" id="cb1" /><label class="check-label" for="cb1"><img src="{%static 'images/color-1.png' %}" alt=""><span>Blue & White</span></label></li>
+               <li><input type="radio" class="color_box d-none" name="color_box"   onchange="change_background('#000000','#ffffff','#000')" id="cb2" /><label class="check-label" for="cb2"><img src="{%static 'images/color-2.png' %}" alt=""><span>Black & White</span></label> </li>
+               <li><input type="radio" class="color_box d-none" name="color_box"  onchange="change_background('#0B1A26','#0B1A26','#ffff')" id="cb3" /><label class="check-label" for="cb3"><img src="{%static 'images/color-3.png' %}" alt=""><span>Blue & Blue</span></label></li>
+               <li><input type="radio" class="color_box d-none" name="color_box" onchange="change_background('#000000','#000000','#ffff')" id="cb4" /><label class="check-label" for="cb4"><img src="{%static 'images/color-4.png' %}" alt=""><span>Black & Black</span></label></li>
+               <li><input type="radio" class="color_box d-none" name="color_box" onchange="change_background('#ffffff','#ffffff','#000')" id="cb5" /><label class="check-label" for="cb5"><img src="{%static 'images/color-5.png' %}" alt=""><span>White & White</span></label></li>
+             </ul>
+           </div>
+
+           <div class="form-group check_on">
+             <div class="on-off">
+              <span class="const"><img src="{%static 'images/icon-constellation.svg' %}"> constellations</span>
+             <label class="switch">
+              <input class="tog" type="checkbox" id="const-show" onchange="change_constellations()">
+               <span class="toggle-btn round"></span>
+             </label>
+             </div>
+              <div class="on-off">
+              <span class="const"><img src="{%static 'images/icon-grid.svg' %}"> Grid</span>
+             <label class="switch">
+              <input class="tog" type="checkbox" id="grid-show" onchange="show_grid()">
+               <span class="toggle-btn round"></span>
+             </label>
+             </div>
+           </div>
+
+            <div class="form-group" >
+               <textarea rows="1" type="text" class="form-control" placeholder="Type in your custom message" id="custom-header" onkeydown="check_header_key(event)" oninput="changeCustomMessage(this,0)"></textarea>
+           </div>
+
+           <div class="form-group d-none" id="cheader_class">
+               <textarea rows="1" type="text" class="form-control" placeholder="Type in your custom location and time" id="custom-meesage"  onkeydown="check_key(event)" oninput="changeCustomMessage(this,1)"></textarea>
+           </div>
+
+
+            <div class="form-group check_on font-selecte" id="fontMessage" hidden>
+                 <div class="on-off">
+                  <span class="const">font</span>
+                 <select id="font-slect" class="form-control" onchange="changeFont()">
+                     <option selected="">helvetica</option>
+                     <option>Georgia</option>
+                 </select>
+                 </div>
+                  <div class="on-off">
+                  <span class="const">message</span>
+                 <label class="switch">
+                  <input class="tog" type="checkbox" id="msgShow" onchange="showHideMessage()" checked>
+                   <span class="toggle-btn round"></span>
+                 </label>
+                 </div>
+               </div>
+
+               <div class="form-group add-megnatic">
+                   <div class="add-mef-left">
+                        <span>$30</span>
+                   </div>
+                     <div class="add-mef-center">
+                       <h5>Add magnetic hanger frame</h5>
+                        <p>Minimalistic and convenient solution for any wall application. <a href="#!">Learn more</a>  <img src="{%static 'images/icon-link.svg' %}"></p>
+                   </div>
+                     <div class="add-mef-right">
+                        <button type="button" class="btn btn-primary add"  data-toggle="modal" data-target="#myModal2">Add</button>
+                   </div>
+               </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="myModal2" role="dialog">
+                <div class="modal-dialog">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="modal-body">
+                      <div class="add-popup">
+                         <div class="pop-img"><img src="{% static 'images/add-pop.png' %}"></div>
+                         <div class="pop-right">
+                           <h4>Magnetic hanger frame</h4>
+                           <p>Helps you to hang your new starmap in style without damaging the paper canvas</p>
+                           <div class="pop-right-bottm">
+                               <button type="button" class="btn btn-primary add"  data-toggle="modal" data-target="#myModal2">Add for $30</button>
+                                              <a href="#!">Maybe later</a>
+                           </div>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+           <div class="form-group">
+              <button type="button" class="btn btn-primary continue" disabled id="continue" onclick="submit_starForm()">Continue</button>
+           </div>
+       </div>
+      </div>
+    </section>
+
+     <section class="map_features_sec">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 quality">
+            <div class="icon-img">
+                <img src="{%static 'images/great-gift.png' %}" alt="feature">
+            </div>
+            <h3>Great Gift</h3>
+            <p>Treat yourself or beloved ones with<br> a great personal gift</p>
+         </div>
+         <div class="col-md-4 quality">
+            <div class="icon-img">
+                <img src="{%static 'images/high.png' %}" alt="feature">
+            </div>
+            <h3>High Quality</h3>
+            <p>Our customers are particulary<br> enjoying high quality of the prints</p>
+         </div>
+         <div class="col-md-4 quality">
+            <div class="icon-img">
+                <img src="{%static 'images/free.png' %}" alt="feature">
+            </div>
+            <h3>Free Shipping</h3>
+            <p>Fast & free shipping on all<br> US orders</p>
+         </div>
+      </div>
+    </section>
+
+
+    <section class="map_footer">
+      <div class="container">
+          <div class="footer-logo">
+             <a href="javascript:void(0);" class="middle_logo"> <img src="{%static 'images/logo.png' %}" alt="logo"> </a>
+          </div>
+          <p>MapYourNight was founded by a creative<br> individual passionate about outer space, star<br> gazing and cosmic explorations.</p>
+      </div>
+    </section>
+
+    <section class="footer-copyright">
+      <div class="container">
+        <div class="copyright">
+           <p>© MapYourNight 2020</p>const
+        </div>
+        <div class="payment">
+          <p>We accept:  <img src="{%static 'images/payment.png' %}"></p>
+        </div>
+      </div>
+    </section>
+
+{% endblock page-body %}
+
+{% block page-js %}
+<script type="text/javascript" src="{% static 'js/lib/d3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lib/d3.geo.projection.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lib/celestial0.4.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="{% static 'js/lib/jquery-dropdown-datepicker.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/algoliasearch/3.31/algoliasearchLite.min.js"></script>
+<script type="text/javascript">
+
+        var d = new Date();
+        var month = d.getMonth()+1;
+        var day = d.getDate();
+        var output = d.getFullYear() + '-' +
+            ((''+month).length<2 ? '0' : '') + month + '-' +
+            ((''+day).length<2 ? '0' : '') + day;
+
+        $('#datee').dropdownDatepicker({
+           defaultDate: output,
+           defaultDateFormat:'yyyy-mm-dd',
+           displayFormat:'mdy',
+           submitFormat:'yyyy-mm-dd',
+           daySuffixes:false,
+           onMonthChange: function(day, month, year) {
+            on_date_change(day,month,year);
+          },
+          onYearChange: function(day, month, year) {
+            on_date_change(day,month,year);
+          },
+          onDayChange: function(day, month, year) {
+            on_date_change(day,month,year);
+          }
+    });
+
+</script>
+
+
+<script type="text/javascript">
+//document.getElementById("custom-header").value = "MAP YOUR NIGHT ";
+
+
+document.getElementById("product-des").style.fontFamily = "helvetica";
+document.getElementById("product-header").style.fontFamily = "helvetica";
+
+var textarea = document.querySelector('#custom-meesage');
+function autosize(size){
+    document.querySelector("#custom-meesage").rows = size;
+}
+
+// Show/hide Frame messages
+function showHideMessage(){
+var showMsg = document.getElementById("msgShow").checked;
+if (showMsg == true){
+        document.getElementById("product-des").style.visibility = "visible";
+        document.getElementById("product-header").style.visibility = "visible";
+    }
+    else{
+        document.getElementById("product-des").style.visibility = "hidden";
+         document.getElementById("product-header").style.visibility = "hidden";
+    }
+}
+
+// Change Font Family
+
+
+function changeFont(){
+    var fontVal = document.getElementById("font-slect").value;
+    document.getElementById("product-des").style.fontFamily = fontVal;
+    document.getElementById("product-header").style.fontFamily = fontVal;
+}
+
+function check_header_key(e){
+ if(e.keyCode == 13){
+    document.querySelector("#custom-header").rows = document.querySelector("#custom-header").rows + 1;
+    }
+}
+function check_key(e){
+ if(e.keyCode == 13){
+    document.querySelector("#custom-meesage").rows = document.querySelector("#custom-meesage").rows + 1;
+    }
+}
+//Change Frame Text
+function changeCustomMessage(e,type) {
+
+  var cstmHeader = document.getElementById("custom-header").value ;
+  var cstmText = document.getElementById("custom-meesage").value ;
+  replaceValue = cstmText.replace(/\n\r?/g, '<br/>');
+  header_Value = cstmHeader.replace(/\n\r?/g, '<br/>');
+  document.getElementById("product-header").innerHTML = header_Value;
+  document.getElementById("product-des").innerHTML = replaceValue;
+
+}
+
+function changeMessage() {
+  var cstmHeader = document.getElementById("custom-header").value ;
+  var cstmText = document.getElementById("custom-meesage").value ;
+  replaceValue = cstmText.replace(/\n\r?/g, '<br/>');
+  header_Value = cstmHeader.replace(/\n\r?/g, '<br/>');
+  document.getElementById("product-header").innerHTML = header_Value;
+  document.getElementById("product-des").innerHTML = replaceValue;
+}
+
+// Change Constellations
+function change_constellations()
+{
+    var showConst = document.getElementById("const-show").checked;
+    if (showConst == true){
+        document.getElementById("constellations-show").checked = true;
+        document.getElementById("constellations-lines").checked = true;
+    }
+    else{
+        document.getElementById("constellations-show").checked = false;
+        document.getElementById("constellations-lines").checked = false;
+    }
+    document.getElementById('show').click();
+
+}
+
+// Show  Grid
+function show_grid()
+{
+
+    var showGrid = document.getElementById("grid-show").checked;
+    if (showGrid == true){
+        document.getElementById("lines-graticule").checked = true;
+    }
+    else{
+        document.getElementById("lines-graticule").checked = false;
+    }
+    document.getElementById('show').click();
+
+}
+
+
+
+// Change background color
+function change_background(color,frame_color,text_color)
+{
+
+  starColor = color=='#ffffff'?'#000':'#ffffff'
+  document.querySelector('#bg_color').value =  color;
+  document.querySelector('#star_color').value = starColor;
+  document.getElementById('pro_img').style.backgroundColor = frame_color;
+  // to save color we need to add in input
+  document.getElementById('frame-color').value = frame_color;
+  document.getElementById('product-des').style.color = text_color;
+  document.getElementById('product-header').style.color = text_color;
+  document.getElementById('text-color').value = text_color;
+
+  document.getElementById('show').click();
+
+}
+
+
+// Date change fucntion
+function on_date_change(day,month,year){
+        var date_obj = new Date(year,month,day);
+        var output = date_obj.getFullYear() + '-' +
+            ((''+month).length<2 ? '0' : '') + month + '-' +
+            ((''+day).length<2 ? '0' : '') + day;
+
+       document.querySelector('#date').value = output;
+       var months = ['test','January','February','March','April','May','June','July','August','September','October','November','December'];
+       if(month.includes('0') && month != '10'){
+       var this_month = month.split('0')[1];
+       }else{
+       var this_month =  month;
+       }
+       var thismonth = months[this_month];
+       document.querySelector('#set-day').value = day
+       document.querySelector('#set-month').value = thismonth
+       document.querySelector('#set-year').value = year
+       autosize(3);
+       set_text();
+       document.getElementById('show').click();
+}
+
+function set_text(){
+    day = document.querySelector('#set-day').value
+    month = document.querySelector('#set-month').value
+    year = document.querySelector('#set-year').value
+    var lat_val = document.querySelector('#locx').value || "32.716";
+    var lng_val = document.querySelector('#locy').value || "122.614" ;
+    var name = document.querySelector('#address-name').value || "Los Angles"
+    var admin = document.querySelector('#address-administration').value || ""
+    var country = document.querySelector('#address-country').value || "CA"
+    document.getElementById("custom-meesage").value =  day + " "  +month+ ", " +year+ " \n" +name+", "+admin+ ",  " +country+ "\n" +lat_val+"˚ N " +lng_val+"˚ W";
+    changeMessage();
+    document.getElementById("fontMessage").removeAttribute("hidden");
+}
+
+
+
+// auto complete address
+(function() {
+  var placesAutocomplete = places({
+    appId: 'plM5EYDTBXW4',
+    apiKey: '115ef8558156ec517bf5f200a83d99f3',
+    container: document.querySelector('#address')
+  });
+
+    var $address = document.querySelector('#address-value')
+
+    //var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    //var now = new Date();
+    //var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+
+    var year,month,day;
+    var day = document.querySelector('#set-day').value
+
+    if(day == ''){
+        now = new Date();
+        year = now.getFullYear()
+        thismonth = now.getMonth()
+        var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        var month = months[thismonth];
+        day = now.getDate();
+           document.querySelector('#set-day').value = day
+           document.querySelector('#set-month').value = month
+           document.querySelector('#set-year').value = year
+    }
+  placesAutocomplete.on('change', function(e) {
+        document.querySelector('#address-value').value = e.suggestion.value
+        document.querySelector('#address-name').value = e.suggestion.name
+        document.querySelector('#address-administration').value = e.suggestion.administrative
+        document.querySelector('#address-country').value = e.suggestion.country
+        document.querySelector('#locx').value =  e.suggestion.latlng.lat
+        document.querySelector('#locy').value =  e.suggestion.latlng.lng
+        document.getElementById("custom-header").value = "MAP YOUR NIGHT";
+        autosize(3);
+        set_text();
+        var el = document.getElementById("cheader_class");
+        el.classList.remove("d-none");
+
+
+        document.getElementById('show').click();
+        document.getElementById("continue").disabled = false;
+
+
+  });
+
+  placesAutocomplete.on('clear', function() {
+        //$address.textContent = 'none';
+        document.getElementById("continue").disabled = true;
+  });
+
+})();
+
+
+
+//locate me
+
+(function() {
+  var places = algoliasearch.initPlaces('plM5EYDTBXW4', '115ef8558156ec517bf5f200a83d99f3');
+
+  function updateForm(response) {
+    var hits = response.hits;
+    var suggestion = hits[0];
+    document.querySelector('#address-value').value = suggestion.value || "";
+    document.querySelector('#address-name').value = suggestion.locale_names.default[0]
+    document.querySelector('#address-administration').value = suggestion.administrative || "";
+    document.querySelector('#address-country').value = suggestion.country.default || "";
+    document.querySelector('#locx').value =  suggestion._geoloc.lat
+    document.querySelector('#locy').value =  suggestion._geoloc.lng
+
+
+
+  //  console.log(suggestion._geoloc.lat, suggestion._geoloc.lng, suggestion.locale_names.default[0] );
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var now = new Date()
+    var thisMonth = months[now.getMonth()]; // getMonth method returns the month of the date (0-January :: 11-December)
+    if (suggestion && suggestion.locale_names) {
+      document.querySelector('#address').value = suggestion.locale_names.default[0] || '';
+     document.getElementById("custom-meesage").innerHTML = thisMonth + " "  +now.getDate()+ ", " +now.getFullYear()+ " \n" +suggestion.locale_names.default[0]+","+suggestion.administrative+" "+suggestion.country.default+" \n" +suggestion._geoloc.lat+"˚ N " +suggestion._geoloc.lng+"˚ W";
+      document.getElementById("custom-header").value = "MAP YOUR NIGHT";
+      autosize(3);
+      changeCustomMessage();
+      var el = document.getElementById("cheader_class");
+      el.classList.remove("d-none");
+      document.getElementById("fontMessage").removeAttribute("hidden");
+      document.getElementById("continue").disabled = false;
+
+    }
+  }
+
+  var lat, lng;
+
+  var $button = document.querySelector('#locate-me');
+  var $latInput = document.querySelector('#locx');
+  var $lngInput = document.querySelector('#locy');
+
+  $latInput.addEventListener('change', function(e) {
+    try {
+      lat = parseFloat(e.target.value);
+
+      if (typeof lat !== 'undefined' && typeof lng !== 'undefined') {
+        places.reverse({
+          aroundLatLng: lat + ',' + lng,
+          hitsPerPage: 1,
+        }).then(updateForm);
+      }
+    } catch (e) {
+      lat = undefined;
+    }
+  });
+
+  $lngInput.addEventListener('change', function(e) {
+    try {
+      lng = parseFloat(e.target.value);
+
+      if (typeof lat !== 'undefined' && typeof lng !== 'undefined') {
+        places.reverse({
+          aroundLatLng: lat + ',' + lng,
+          hitsPerPage: 1,
+        }).then(updateForm);
+      }
+    } catch (e) {
+      lng = undefined;
+    }
+  });
+
+  $button.addEventListener('click', function() {
+
+    navigator.geolocation.getCurrentPosition(function(response) {
+      var coords = response.coords;
+      lat = coords.latitude.toFixed(6);
+      lng = coords.longitude.toFixed(6);
+      $latInput.value = lat;
+      $lngInput.value = lng;
+      document.getElementById('show').click();
+      document.getElementById("continue").disabled = false;
+
+      places.reverse({
+        aroundLatLng: lat + ',' + lng,
+        hitsPerPage: 1
+      }).then(updateForm);
+    });
+  });
+})();
+
+
+
+// Submit Form
+
+function submit_starForm() {
+var mapAddress = document.getElementById("address").value;
+var maplat = document.getElementById("locx").value;
+var maplng = document.getElementById("locy").value;
+var mapDate = document.getElementById('datee').value;
+var mapStarColor = document.getElementById('star_color').value;
+var mapFrameColor = document.getElementById('frame-color').value || "#ffffff";
+var mapBgColor = document.querySelector('#bg_color').value;
+var mapTextColor =  document.getElementById('text-color').value || "#000";
+var constVal = document.getElementById("const-show").checked;
+var gridVal = document.getElementById("grid-show").checked;
+var mapText = document.querySelector("#custom-meesage").value;
+var MapMsgStatus = document.getElementById("msgShow").checked;
+var MapFont = document.getElementById("font-slect").value
+
+//console.log(mapAddress,maplat, maplng,mapDate,mapStarColor,mapFrameColor,mapBgColor,mapTextColor,constVal,gridVal,mapText,MapMsgStatus, MapFont)
+var json = {
+                "location": mapAddress,
+                "lat": maplat,
+                "lng": maplng,
+                "date":  mapDate,
+                "star_color": mapStarColor,
+                "frame_color":  mapFrameColor,
+                "bg_color":  mapBgColor,
+                "text_color":  mapTextColor,
+                "constellations":  constVal,
+                "grid":  gridVal,
+                "message":  mapText,
+                "font":MapFont
+            }
+document.getElementById("json_data").value = JSON.stringify(json)
+document.getElementById("params").submit(); //form submission
+
+}
+
+
+
+
+
+
+/* D3-Celestial sky map
+   Copyright 2015 Olaf Frohn https://github.com/ofrohn, see LICENSE
+*/
+/*  Uncomment for deeper data files */
+//var stardata = "stars.8.json";
+//var dsodata = "dsos.14.json";
+
+function getStarMapWidth(){
+    if(screen.width > 1200){
+        var widthVal = parseInt(screen.width/4 - 80);
+    }else if(screen.width > 1000){
+        var widthVal = 320;
+    }else if(screen.width > 800){
+        var widthVal = parseInt(screen.width/2 + 50);
+    }else{
+        var widthVal = 200;
+    }
+    return widthVal
+}
+
+//Default settings
+var width_val = getStarMapWidth();
+var cfg = Celestial.settings().set({width:"100%", projection:"airy"});
+
+window.addEventListener("resize", resizeStarMap);
+function resizeStarMap(){
+    cfg = Celestial.settings().set({width:"100%", projection:"airy"});
+    fillForm(cfg);
+    document.getElementById('show').click();
+}
+
+if (typeof stardata !== 'undefined') cfg.stars.data = stardata;
+if (typeof dsodata !== 'undefined') cfg.dsos.data = dsodata;
+
+//Field names
+var fnames = {
+  //"width": "Map width",
+  "locx": "Location right ascension",
+  "locy": "Location declination",
+  "stars-limit": "Star display limit",
+  "stars-namelimit": "Star name display limit",
+  "dsos-limit": "DSO display limit",
+  "dsos-namelimit": "DSO name display limit"
+}
+
+//Fill form & enable
+fillForm(cfg);
+
+//Show map
+Celestial.display(cfg);
+
+//On click parse form and redisplay
+$("show").onclick = function(e) {
+  var err = [], key, t, form = document.params;
+
+
+  //Test params
+  // if (!isNumber(cfg.width)) err.push("Check Width setting");
+  for (key in fnames) {
+    t = testNumber(form[key]);
+    if (t !== 0) err.push(t);
+  }
+
+  if (form.locx.value === "" && form.locy.value !== "" || form.locy.value === "" && form.locx.value !== "") {
+    err.push("Both Location coordinates need to be given");
+  }
+
+  if (err.length > 0) {
+    $("error").innerHTML = err.join("<br>");
+    $("error").style.display = "block";
+  } else {
+    $("error").style.display = "none";
+    cfg = parseForm(cfg);
+    Celestial.display(cfg);
+  }
+  return false;
+}
+
+$("defaults").onclick = function(e) {
+
+  //var d = new Date();
+ // var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+  cfg = Celestial.settings().set({width:200, projection:"airy",date:date});
+
+  fillForm(cfg);
+  return false;
+}
+
+
+//Form field from cfg options
+function fillForm(cfg) {
+  var key, form = document.params,
+      conf = formify(cfg);
+
+  fillOptions(cfg);
+
+  for (key in conf) {
+    if (!conf.hasOwnProperty(key) || !form.hasOwnProperty(key)) continue;
+    if (form[key].type == "checkbox") {
+      form[key].checked = conf[key];
+    } else if (form[key].type == "select-one") {
+      selectOption(form[key], conf[key]);
+    } else {
+      form[key].value = conf[key];
+    }
+  }
+
+  enableForm();
+}
+
+function enableForm() {
+  var t, i, key, f = document.forms[0],
+  deps = {
+    "stars-limit": "stars-show",
+    "stars-names": "stars-show",
+    "stars-proper": "stars-show,stars-names",
+    "stars-desig": "stars-show,stars-names",
+    "stars-namelimit": "stars-show,stars-names",
+    "stars-colors": "stars-show",
+    "stars-color": "stars-show",
+    "dsos-limit": "dsos-show",
+    "dsos-names": "dsos-show",
+    "dsos-desig": "dsos-show,dsos-names",
+    "dsos-namelimit": "dsos-show,dsos-names",
+    "constellations-names": "constellations-show",
+    "constellations-desig": "constellations-show,constellations-names",
+    "constellations-lines": "constellations-show",
+    "constellations-bounds": "constellations-show",
+    "locx": "transform=equatorial",
+    "locy": "transform=equatorial"
+  };
+
+  for (key in deps) {
+    if (!deps.hasOwnProperty(key)) continue;
+    if (deps[key].search(/\=/) !== -1) {
+      t = deps[key].split("=");
+      f[key].disabled = (f[t[0]].value !== t[1]);
+    } else {
+      t = deps[key].split(",");
+      f[key].disabled = t.some( function(d) { return !f[d].checked; } );
+    }
+    f[key].parentNode.style.color = f[key].disabled ? "#999" : "#000";
+  }
+}
+
+function selectOption(e, opt) {
+  var i;
+  for (i=0; i<e.options.length; i++) {
+    if (e.options[i].value == opt) {
+      e.selectedIndex = i;
+      return;
+    }
+  }
+}
+
+function fillOptions(cfg) {
+  var lim, i, key, e = document.forms[0].elements;
+
+  fillSelect("projection", Celestial.projections());
+  fillSelect("transform", Celestial.eulerAngles());
+
+  lim = getLimits();
+
+  if (lim.s != 6) {
+    document.params["stars-limit"].max = lim.s;
+    document.params["stars-namelimit"].max = lim.s;
+  };
+
+  if (lim.d != 6) {
+    document.params["dsos-limit"].max = lim.d;
+    document.params["dsos-namelimit"].max = lim.d;
+  };
+
+  if (cfg.transform === 'equatorial') {
+    document.params["locx"].min = "-90";
+    document.params["locx"].max = "90";
+    $('lxunit').innerHTML = "h";
+  } else {
+    document.params["locx"].min = "-180";
+    document.params["locx"].max = "180";
+    $('cxunit').innerHTML = "\u00b0";
+  }
+
+
+  for (i=0; i<e.length; i++) {
+    e[i].onchange = enableForm;
+  }
+}
+
+function getLimits() {
+  var t, rx = /\d+(\.\d+)?/g,
+      s, d, res = {s:6, d:6},
+      cfg =  Celestial.settings();
+  if (typeof dsodata !== 'undefined') d = dsodata;
+  else d = cfg.dsos.data;
+
+  //test dso limit
+  t = d.match(rx);
+  if (t !== null) {
+    res.d = parseFloat(t[t.length-1]);
+  }
+
+
+  if (typeof stardata !== 'undefined') s = stardata;
+  else s = cfg.stars.data;
+
+  //test star limit
+  t = s.match(rx);
+  if (t !== null) {
+    res.s = parseFloat(t[t.length-1]);
+  }
+  return res;
+}
+
+function fillSelect(id, fill) {
+  var t, txt, key, elem = document.params[id],
+      cfg = Celestial.settings();
+
+  if (!elem || !fill) return;
+
+  elem.options.length = 0;
+
+  for (key in fill) {
+    t = document.createElement("option");
+    t.value = key;
+    txt = key;
+    txt = txt.replace(/^([a-z])/, function(s, m) { return m.toUpperCase(); } );
+    txt = txt.replace(/(?!\b)([A-Z0-9])/g, " $1");
+    if (fill[key].hasOwnProperty("clip") && fill[key].clip == true) txt += " (hemi)";
+    t.innerHTML = txt;
+    if (key == cfg[id]) t.selected = "selected";
+    elem.appendChild(t);
+  }
+
+}
+
+
+function parseForm(cfg) {
+  var key, form = document.params,
+      conf = formify(cfg);
+
+  for (key in conf) {
+    if (!conf.hasOwnProperty(key) || !form.hasOwnProperty(key)) continue;
+    if (form[key].type == "checkbox") {
+      conf[key] = form[key].checked;
+    } else if (form[key].type == "number") {
+      if (form[key].value === "") continue;
+      conf[key] = parseFloat(form[key].value);
+    } else {
+      conf[key] = form[key].value;
+    }
+  }
+  return objectify(conf);
+}
+
+function formify(cfg) {
+  var t, key, sub, res = {};
+  for (key in cfg) {
+    if (!cfg.hasOwnProperty(key)) continue;
+    if (cfg[key] !== null && typeof cfg[key] == 'object') {
+      t = key + "-";
+      for (sub in cfg[key]) {
+        if (!cfg[key].hasOwnProperty(sub)) continue;
+        res[t + sub] = cfg[key][sub];
+      }
+    } else if (key === 'location') {
+      if (cfg.location === null || cfg.location.length < 2) {
+        res.locx = null;
+        res.locy = null;
+      } else {
+        res.locx = cfg.location[0];
+        res.locy = cfg.location[1];
+        if (res.transform === 'equatorial') res.locx = res.locx < 0 ? res.locx / 15 + 24 : res.locx / 15;
+      }
+    } else if (typeof cfg[key] != 'function') {
+      res[key] = cfg[key]
+    }
+  }
+  return res;
+}
+
+function objectify(cfg) {
+  var t, key, prop, res = {};
+  for (key in cfg) {
+    if (!cfg.hasOwnProperty(key)) continue;
+    t = key.split('-');
+    prop = t[0];
+    if (t.length == 1) {
+      res[prop] = cfg[key];
+    } else {
+      if (!res[prop]) { res[prop] = {}; }
+      res[prop][t[1]] = cfg[key];
+    }
+  }
+
+
+  if (res.hasOwnProperty('locx') && isNumber(res.locx) && res.hasOwnProperty('locy') && isNumber(res.locy))
+  {
+    if (res.transform === 'equatorial') res.locx = res.locx > 12 ? res.locx * 15 - 360 : res.locx * 15;
+    res.location = [res.locx, res.locy];
+        if(res.hasOwnProperty('date') ){
+            if(res.date != null || res.date != ""){
+                d = (new Date()).toISOString().split('T')[0];
+                var d1 = new Date(d);
+                var d2 = new Date(res.date);
+
+                var diffTime = d1 - d2;
+                var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                if(diffDays < 0){
+                        diffDays = Math.abs(diffDays)/10;
+                        res.location = [res.locx + diffDays, res.locy];
+                    }
+                    else{
+                        diffDays = Math.abs(diffDays)/10;
+                        res.location = [res.locx - diffDays, res.locy];
+
+                    }
+            }
+  }else{
+    res.location = null;
+            if(res.hasOwnProperty('date') ){
+                if(res.date != null || res.date != ""){
+                    d = (new Date()).toISOString().split('T')[0];
+                    var d1 = new Date(d);
+                    var d2 = new Date(res.date);
+                    var diffTime = d1 - d2;
+                    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    if(diffDays < 0){
+                        diffDays = Math.abs(diffDays)/10;
+                        res.location = [res.locx + diffDays, res.locy];
+                    }
+                    else{
+                        diffDays = Math.abs(diffDays)/10;
+                        res.location = [res.locx - diffDays, res.locy];
+
+                    }
+
+                }
+            }
+  }
+
+
+
+
+   }
+  return res;
+}
+
+function testNumber(p) {
+  var v = p.value;
+  if (v === "") return 0;
+  if (!isNumber(v)) return fnames[p.name] + ": check field value";
+  v = parseFloat(v);
+  if (v < p.min || v > p.max ) return fnames[p.name] + " must be between " + p.min + " and " + p.max;
+  return 0;
+}
+
+function $(id) { return document.getElementById(id); }
+function isNumber(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+</script>
+{% endblock page-js %}

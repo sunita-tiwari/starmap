@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %} Map-Your-Night-DEV {% endblock title %}</title>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="description" content="">
+
+		<!-- Mobile specific meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+		<!-- Extra meta-->
+		{% block meta-tags %}
+		{% endblock meta-tags %}
+
+		<!-- CSS-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+		{% block outer-css %}
+		<!-- page specific css to be loaded before ds.css -->
+		{% endblock outer-css %}
+
+		<!-- Favicons-->
+		<link rel="apple-touch-icon" href="{% static 'images/icon.png' %}">
+    	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        {% block page-css %}
+        {% endblock page-css %}
+
+
+    </head>
+
+    <body>
+	    <div id="cover">
+	        <div class="pre-loader-wrapper">
+	            <p>
+<!--	                <img src="{% static 'images/logo.gif' %}" alt="">-->
+	            </p>
+	        </div>
+	    </div>
+    	{% csrf_token %}
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="//browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        {% csrf_token %}
+
+        {% block messages %}
+
+		{% endblock messages %}
+
+        {% block page-body %}
+        {% endblock page-body %}
+
+		{% block components-js %}
+		{% endblock components-js %}
+
+
+        <!-- Add your site or application content here -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
+
+		<!-- LOAD LIBRARIES  -->
+
+ 		<script type="text/javascript">
+
+	    	$(document).ready(function(){
+				function csrfSafeMethod(method) {
+				    // these HTTP methods do not require CSRF protection
+				    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+				}
+
+				function sameOrigin(url) {
+				    // test that a given url is a same-origin URL
+				    // url could be relative or scheme relative or absolute
+				    var host = document.location.host; // host + port
+				    var protocol = document.location.protocol;
+				    var sr_origin = '//' + host;
+				    var origin = protocol + sr_origin;
+				    // Allow absolute or scheme relative URLs to same origin
+				    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+				        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+				        // or any other URL that isn't scheme relative or absolute i.e relative.
+				        !(/^(\/\/|http:|https:).*/.test(url));
+				}
+
+<!--				$.ajaxSetup({-->
+<!--				    beforeSend: function(xhr, settings) {-->
+<!--				        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {-->
+<!--				            // Send the token to same-origin, relative URLs only.-->
+<!--				            // Send the token only if the method warrants CSRF protection-->
+<!--				            // Using the CSRFToken value acquired earlier-->
+<!--				            xhr.setRequestHeader("X-CSRFToken", $('input[name="csrfmiddlewaretoken"]').val());-->
+<!--				        }-->
+<!--				    }-->
+<!--				});-->
+	    	});
+		</script>
+        {% block page-js %}
+		{% endblock page-js %}
+
+    </body>
+</html>

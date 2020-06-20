@@ -1,0 +1,272 @@
+select#font-slect {
+text-transform: uppercase;
+}
+.add-megnatic {
+    margin-top: 2.125rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.add-mef-left span {
+color: #0B1A26;
+font-family: "Futura PT";
+font-size: 1.25rem;
+font-weight: 400;
+letter-spacing: 0.36px;
+line-height: 1.625rem;
+}
+.add-mef-left {
+position: relative;
+width: 5.938rem;
+text-align: center;
+background: #f7f7f7;
+height: 4.688rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-top: 0.188rem solid #0B1A26;
+border-bottom: 0.188rem solid #0B1A26;
+margin-right: 0.938rem;
+}
+.add-mef-center h5 {
+color: #0B1A26;
+font-family: "Futura PT";
+font-size: 1.25rem;
+font-weight: 500;
+letter-spacing: 0.36px;
+line-height: 1.4375rem;
+margin-bottom: 5px;
+}
+.add-mef-center p {
+color: #0B1A26;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.438rem;
+font-family: 'Futura PT Book';
+ margin-bottom: 0;
+}
+.add-mef-center p a {
+text-decoration: underline;
+color: #0B1A26;
+}
+.add-mef-center p a i.fa.fa-external-link {
+margin-left: 0.313rem;
+font-size: 0.875rem;
+}
+button.btn.btn-primary.add {
+    border: 0.125rem solid #0B1A26;
+    background: transparent;
+    color: #0B1A26 !important;
+    padding: 0.40rem 1.5rem;
+    border-radius: 3.125rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: 0.44px;
+    line-height: 1.625rem;
+    text-transform: capitalize;
+    font-family: "Futura PT Demi";
+    display: inline-block;
+    transition: all 0.6s;
+}
+.add-mef-center {
+margin: 0px 0.625rem;
+}
+.add-mef-left:after {
+position: absolute;
+content: '';
+width: 25px;
+height: 25px;
+border-top: 1px solid;
+border-right: 1px solid;
+transform: rotate(-45deg);
+top: -13px;
+}
+div#myModal2 .modal-dialog {
+max-width: 100%;
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+width: 1100px;
+}
+.pop-right, .pop-img {
+width: 50%;
+}
+.add-popup {
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+}
+.pop-img img {
+width: 100%;
+}
+div#myModal2 .modal-body {
+padding: 0;
+}
+div#myModal2 button.close {
+    position: absolute;
+    top: 0.438rem;
+    right: 1.313rem;
+    font-size: 2.188rem;
+    color: #000;
+    opacity: 1;
+    z-index: 9;
+}
+.pop-right {
+padding: 0px 6.25rem;
+}
+div#myModal2 h4 {
+    color: #0B1A26;
+    font-family: "Futura PT Demi";
+    font-size: 1.625rem;
+    font-weight: 500;
+    letter-spacing: 0.47px;
+    line-height: 2.125rem;
+}
+div#myModal2 p {
+color: #0B1A26;
+font-size: 1.25rem;
+font-weight: 300;
+letter-spacing: 0.36px;
+line-height: 1.625rem;
+margin-bottom: 0.875rem;
+font-family: 'Futura PT Book';
+}
+div#myModal2 button.btn.btn-primary.add {
+background: #0b1a26;
+color: #ffffff !important;
+}
+.pop-right-bottm a {
+color: #0B1A26;
+font-size: 1.25rem;
+font-weight: 300;
+letter-spacing: 0.36px;
+line-height: 1.625rem;
+margin-bottom: 0px;
+font-family: 'Futura PT Book';
+text-decoration: underline;
+}
+.pop-right-bottm {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+
+
+@media only screen and (max-width:1140px){
+div#myModal2 .modal-dialog {
+width: 90%;
+margin: 0;
+}
+.pop-right {
+padding: 0px 3.25rem;
+}
+
+}
+
+@media only screen and (max-width: 991px){
+.form-group.check_on.font-selecte, .form-group.check_on.font-selecte .on-off {
+flex-wrap: nowrap;
+}
+.form-group.check_on.font-selecte .on-off:first-child {
+margin-right: 10px;
+}
+.add-mef-left {
+margin-right: 0;
+}
+.pop-right {
+padding: 0px 1rem;
+}
+}
+
+@media only screen and (max-width: 767px){
+.add-megnatic {
+margin-top: 40px;
+}
+.pop-right, .pop-img {
+width: 100%;
+}
+.pop-right {
+padding: 1rem;
+}
+.pop-img img {
+width: 100%;
+height: 450px;
+object-fit: cover;
+}
+div#myModal2 h4 {
+  font-size: 1.425rem;
+  font-family: "Futura PT Demi";
+}
+
+
+
+
+}
+div#myModal2 p {
+  font-size: 1.1rem;
+  line-height: 1.425rem;
+}
+button.btn.btn-primary.add {
+  font-size: 1rem;
+}
+
+}
+
+@media only screen and (max-width: 480px){
+.pop-img img {
+  height: auto;
+}
+.add-megnatic .add-mef-center {
+    width: auto;
+    margin: 0px 0.325rem;
+}
+
+.add-megnatic .add-mef-left {
+    width: 3.625rem;
+    height: 4.375rem;
+}
+
+.form-group.check_on.font-selecte, .form-group.check_on.font-selecte .on-off, .add-megnatic, .pop-right-bottm  {
+  flex-wrap: wrap;
+}
+.add-mef-left {
+  width: 3.938rem;
+  }
+.add-mef-center {
+  width: 75%;
+  margin: 0px 0.325rem;
+}
+.add-mef-left {
+  width: 20%;
+}
+.add-mef-right, .pop-right-bottm a {
+  margin-top: 1.5rem;
+}
+.add-mef-center h5 {
+  font-size: 1.1rem;
+  line-height: 1.2375rem;
+
+}
+.pop-right-bottm a {
+  width: 100%;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

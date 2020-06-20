@@ -1,0 +1,258 @@
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Light.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-LightObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-LightObl.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond';
+    src: url('/static/fonts/FuturaPTCond-BoldObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-BoldObl.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-MediumObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-MediumObl.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Demi';
+    src: url('/static/fonts/FuturaPT-Demi.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Demi.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-HeavyObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-HeavyObl.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Book';
+    src: url('/static/fonts/FuturaPT-BookObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-BookObl.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Extra';
+    src: url('/static/fonts/FuturaPTCond-ExtraBoldObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-ExtraBoldObl.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Heavy.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Extra';
+    src: url('/static/fonts/FuturaPT-ExtraBold.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Bold.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Extra';
+    src: url('/static/fonts/FuturaPTCond-ExtraBold.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond';
+    src: url('/static/fonts/FuturaPTCond-Bold.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Demi';
+    src: url('/static/fonts/FuturaPT-DemiObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-DemiObl.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond';
+    src: url('/static/fonts/FuturaPTCond-MediumObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-MediumObl.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Extra';
+    src: url('/static/fonts/FuturaPT-ExtraBoldObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-ExtraBoldObl.woff') format('woff');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-Medium.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Book';
+    src: url('/static/fonts/FuturaPT-Book.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Book';
+    src: url('/static/fonts/FuturaPTCond-BookObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-BookObl.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Book';
+    src: url('/static/fonts/FuturaPTCond-Book.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT';
+    src: url('/static/fonts/FuturaPT-BoldObl.woff2') format('woff2'),
+        url('/static/fonts/FuturaPT-BoldObl.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond';
+    src: url('/static/fonts/FuturaPTCond-Medium.woff2') format('woff2'),
+        url('/static/fonts/FuturaPTCond-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia.woff2') format('woff2'),
+        url('/static/fonts/Georgia.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('/static/fonts/Helvetica.woff2') format('woff2'),
+        url('/static/fonts/Helvetica.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia.eot');
+    src: url('/static/fonts/Georgia.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia.woff2') format('woff2'),
+        url('/static/fonts/Georgia.woff') format('woff'),
+        url('/static/fonts/Georgia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('/static/fonts/HelveticaNeueThin.eot');
+    src: url('/static/fonts/HelveticaNeueThin.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/HelveticaNeueThin.woff2') format('woff2'),
+        url('/static/fonts/HelveticaNeueThin.woff') format('woff'),
+        url('/static/fonts/HelveticaNeueThin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-Italic.eot');
+    src: url('/static/fonts/Georgia-Italic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-Italic.woff2') format('woff2'),
+        url('/static/fonts/Georgia-Italic.woff') format('woff'),
+        url('/static/fonts/Georgia-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-BoldItalic.eot');
+    src: url('/static/fonts/Georgia-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-BoldItalic.woff2') format('woff2'),
+        url('/static/fonts/Georgia-BoldItalic.woff') format('woff'),
+        url('/static/fonts/Georgia-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Georgia';
+    src: url('/static/fonts/Georgia-Bold.eot');
+    src: url('/static/fonts/Georgia-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/Georgia-Bold.woff2') format('woff2'),
+        url('/static/fonts/Georgia-Bold.woff') format('woff'),
+        url('/static/fonts/Georgia-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('/static/fonts/HelveticaNeueItalic.eot');
+    src: url('/static/fonts/HelveticaNeueItalic.eot?#iefix') format('embedded-opentype'),
+        url('/static/fonts/HelveticaNeueItalic.woff2') format('woff2'),
+        url('/static/fonts/HelveticaNeueItalic.woff') format('woff'),
+        url('/static/fonts/HelveticaNeueItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}

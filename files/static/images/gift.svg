@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 77" width="88" height="77">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="M-682 -1054L758 -1054L758 3231L-682 3231Z" />
+		</clipPath>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #203f57 } 
+		.shp1 { fill: #0b1a26 } 
+		.shp2 { fill: #e7e8ed } 
+		.shp3 { fill: #ffffff } 
+		.shp4 { fill: #d9dce1 } 
+	</style>
+	<g id="Homepage: Desktop" clip-path="url(#cp1)">
+		<g id="Value props">
+			<g id="gift">
+				<path id="Rectangle" class="shp0" d="M25 8L75 8L75 48L25 48L25 8Z" />
+				<path id="Path" class="shp1" d="M75 8L25 8L32.69 0L67.31 0L75 8Z" />
+				<path id="Path" class="shp2" d="M77.33 32.35L62.48 47.68L36.57 45.35L49.71 40.69C51.81 39.72 53.71 37.01 53.71 34.49L53.71 34.49C53.71 31.96 51.81 30.41 49.33 31.19L24.38 38.17C23.62 37.98 22.86 37.98 22.09 37.98C19.43 37.98 16.95 39.14 15.05 40.69L14.86 40.69L0 56.21L19.62 76L29.9 61.64L66.09 61.26L88 32.16C85.14 29.25 80.38 29.25 77.33 32.35Z" />
+				<path id="Rectangle" class="shp3" d="M44 7L55 7L55 19L44 19L44 7Z" />
+				<path id="Path" class="shp4" d="M55 8L44 8L45.83 0L53.17 0L55 8Z" />
+			</g>
+		</g>
+	</g>
+</svg>

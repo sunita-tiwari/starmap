@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="35px" viewBox="0 0 20 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>constellation icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Map-Your-Night" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Design-page:-Desktop---form-complete" transform="translate(-855.000000, -650.000000)" fill="#0B1A26">
+            <g id="Options" transform="translate(855.000000, 650.000000)">
+                <g id="constellation-icon">
+                    <path d="M0.999878212,2 C2.33337393,2 2.33337393,0 0.999878212,0 C-0.333292737,0 -0.333292737,2 0.999878212,2" id="Fill-337"></path>
+                    <path d="M5.50015221,11 C8.8332826,11 8.8332826,6 5.50015221,6 C2.16661593,6 2.16661593,11 5.50015221,11" id="Fill-338"></path>
+                    <path d="M18.0004384,21 C20.6665205,21 20.6665205,17 18.0004384,17 C15.3331872,17 15.3331872,21 18.0004384,21" id="Fill-339"></path>
+                    <path d="M2.49958915,35 C4.50013695,35 4.50013695,32 2.49958915,32 C0.500136949,32 0.500136949,35 2.49958915,35" id="Fill-340"></path>
+                    <polyline id="Fill-342" points="5.56237332 9 1 1.18732131 1.43716602 1 6 8.81267869 5.56237332 9"></polyline>
+                    <polyline id="Fill-343" points="1.43978619 34 1 33.9423151 4.55895608 9 5 9.05728432 1.43978619 34"></polyline>
+                    <polyline id="Fill-344" points="18.9480992 19 4 7.4253207 4.05190081 7 19 18.5742598 18.9480992 19"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
